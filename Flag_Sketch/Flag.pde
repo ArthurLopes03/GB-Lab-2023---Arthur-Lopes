@@ -1,7 +1,14 @@
 class Flag 
 {
-  Flag()
+  int xpos = 250;
+  int ypos = 250;
+  int moveDirectionX = 1;
+  int moveDirectionY = 1;
+  
+  Flag(int x, int y)
   {
+    xpos = x;
+    ypos = y;
   }
   
     int[] rectColors = new int[6];
@@ -22,23 +29,38 @@ class Flag
                               };
   void create()
   {
+    //x & y = 250
     int h = 0;
     int s = 0;
     int b = 0;
+    
+    for(int i = 1; i <= 6; i ++)
+    {
+       fill(rectColors[i - 1], 255, 255);
+       rect(xpos, ypos + (i* 10), 120, 10);
+    }
     for(int a = 0; a < 4; a++)
     {
       h = triangleColors[a][0];
       s = triangleColors[a][1];
       b = triangleColors[a][2];
       fill(h,s,b);
-      triangle(250, 250 + (a * 8), 250, 310 - (a * 8), 370 - (a * 10), 280);
+      triangle(xpos, (ypos + 10) + (a * 8), xpos, (ypos + 70) - (a * 8), (xpos + 70) - (a * 10), ypos + 40);
     }
-    
-    for(int i = 1; i <= 6; i ++)
+  }
+  
+  void move()
+  {
+    if (xpos == 380 || xpos == 0)
     {
-       fill(rectColors[i - 1], 255, 255);
-       rect(250, 250 + (i* 10), 120, 10);
+      moveDirectionX = moveDirectionX * -1;
     }
+    if (ypos == 440 || ypos == 0)
+    {
+      moveDirectionY = moveDirectionY * -1;
+    }
+    xpos += moveDirectionX;
+    ypos += moveDirectionY;
   }
   
   

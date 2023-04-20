@@ -1,3 +1,5 @@
+Flag myFlag = new Flag(250, 250);
+
 void setup()
 {
   size(500,500);
@@ -8,6 +10,7 @@ void setup()
 
 void draw()
 {
-  Flag myFlag = new Flag();
+  background(255);
   myFlag.create();
+  myFlag.move();
 }
